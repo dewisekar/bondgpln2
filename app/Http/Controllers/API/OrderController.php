@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\bondg;
 use App\User;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -21,6 +22,7 @@ class OrderController extends Controller
             'alamat as alamat_pelapor', 'keluhan', 'noagenda as nomor_agenda', 'tgldg as tgl_bln_thn', 'nometerlama as no_meter_lama', 'nometerbaru as no_meter_baru',
             'daya', 'gardu', 'perbaikan', 'tglkirimpetugas as tgl_kirim_petugas' )
             ->where('id_petugas', '=', $petugas->id)
+            ->where('status', '=', 'Pengiriman WO')
             ->get();
 
         return response()->json(array(
@@ -54,6 +56,37 @@ class OrderController extends Controller
             return response()->json(array(
                 'error' => 1,
                 'message' => "Unauthorized",
+            ), 200);
+        }
+    }
+
+    public function CancelOrder(Request $request)
+    {
+        $request->validate([
+            'id_laporan' => 'required',
+            'alasan' => 'required',
+        ]);
+
+        $bondg = bondg::find($request->id_laporan);
+        if($bondg->cancel_1 == NULL)
+        {
+            $bondg->cancel_1 = $request->alasan;
+            $bondg->save();
+            return response()->json(array(
+                'error' => 0,
+                'message' => "Berhasil diubah",
+            ), 200);
+        }
+        else
+        {
+            $bondg->cancel_2 = $request->alasan;
+            $bondg->tglbatal = Carbon::now();
+            $bondg->status = "Batal";
+            $bondg->waktupengerjaan = Carbon::now()->diffIndays($bondg->tgldg);
+            $bondg->save();
+            return response()->json(array(
+                'error' => 0,
+                'message' => "Berhasil diubah",
             ), 200);
         }
     }

@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/order', 'API\OrderController@GetOrder')->name('get.order');
 Route::post('/detailorder', 'API\OrderController@GetDetailOrder')->name('detail.order');
+Route::post('/cancelorder', 'API\OrderController@CancelOrder')->name('cancel.order');
