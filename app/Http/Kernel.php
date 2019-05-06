@@ -20,7 +20,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\Admin::class,     
-        \App\Http\Middleware\TokenApi::class,   
+        \App\Http\Middleware\TokenApi::class, 
+        \App\Http\Middleware\Viewer::class,    
     ];
 
     /**
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => Middleware\Admin::class,
         'tokenapi' => Middleware\TokenApi::class,
+        'viewer' => Middleware\Viewer::class,
     ];
 
     /**
