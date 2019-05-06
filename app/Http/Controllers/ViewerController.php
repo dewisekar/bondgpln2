@@ -15,7 +15,7 @@ class ViewerController extends Controller
 
     public function show_status()
     {
-        $bondg = bondg::all();
+        $bondg = bondg::orderBy('tgldg', 'desc')->all();
         $no = 1;
         return view('viewer.status', compact('bondg', 'no'));
     }

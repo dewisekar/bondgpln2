@@ -55,7 +55,7 @@ class AdminController extends Controller
 
     public function status_bondg()
     {
-        $bondg = bondg::get();
+        $bondg = bondg::orderBy('tgldg', 'desc')->get();
         $no = 1;
         return view('admin.status-bondg', compact('bondg', 'no'));
     }
