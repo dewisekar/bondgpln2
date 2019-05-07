@@ -172,7 +172,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="remaja" class="nav-link">
                         <i class="nav-icon fa fa-check-square"></i>
                         <p>Remaja</p>
                         </a>

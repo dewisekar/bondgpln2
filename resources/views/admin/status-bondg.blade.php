@@ -81,7 +81,7 @@
                                                         <option>Cetak PK</option>
                                                         <option>Pengiriman WO</option>
                                                         <option>Batal</option>
-                                                        <option>Remaja</option>
+                                                        <option>Remajas</option>
                                                     </select>
                                                 </div> 
                                             </div>

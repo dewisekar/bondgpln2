@@ -278,4 +278,11 @@ class AdminController extends Controller
         $bondg->save();
         return redirect('/input-petugas')->with('success', 'Petugas berhasil diaktifkan');
     }
+
+    public function show_remaja()
+    {
+        $bondg = bondg::where('status', '=', 'Terpasang')->get();
+        $no = 1;
+        return view('admin.remaja', compact('bondg', 'no'));
+    }
 }
